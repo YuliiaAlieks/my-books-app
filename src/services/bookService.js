@@ -7,3 +7,16 @@ export const getRecommended = async () => {
 
     return result;
 }
+
+export const create = async (bookData) => {
+    const response = await fetch(`${baseUrl}/recommened-books`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(bookData)
+    });
+
+    const result = await response.json();
+    return result;
+}

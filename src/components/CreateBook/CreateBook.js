@@ -1,7 +1,89 @@
+import { useNavigate } from 'react-router-dom';
+import * as bookService from '..//../services/bookService';
+
+
 const CreateBook = () => {
+    const navigate = useNavigate();
+    const onBookCreate = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        let title = formData.get('title');
+        let author = formData.get('author');
+        let year = formData.get('year');
+        let description = formData.get('description');
+        let imageUrl = formData.get('imageUrl');
+        let recommendedUrl = formData.get('recommendedUrl');
+        let genre = formData.get('genre');
+
+        bookService.create({
+                title,
+                author,
+                year,
+                description,
+                imageUrl,
+                recommendedUrl,
+                genre            
+        }).then(result => {
+            navigate('/dashboard');
+        });
+
+    }
+
     return (
-        <section>
-            <p>Form for creating a new book</p>
+        <section id="create-book">
+            <form id="create-form" onSubmit={onBookCreate} method="POST">
+                <fieldset>
+                    <legend>Create new Book</legend>
+                    <p>
+                        <label htmlFor="title">Title</label>
+                        <span>
+                            <input type="text" name="title" id="title" placeholder="Title" />
+                        </span>
+                    </p>
+                    <p>
+                        <label htmlFor="author">Author</label>
+                        <span>
+                            <input type="text" name="author" id="author" placeholder="Author" />
+                        </span>
+                    </p>
+                    <p>
+                        <label htmlFor="year">Year</label>
+                        <span>
+                            <input type="text" name="year" id="year" placeholder="Year" />
+                        </span>
+                    </p>
+                    <p>
+                        <label htmlFor="description">Description</label>
+                        <span>
+                            <textarea name="description" id="description" placeholder="Description"></textarea>
+                        </span>
+                    </p>
+                    <p>
+                        <label htmlFor="image">Image</label>
+                        <span>
+                            <input type="text" name="imageUrl" id="image" placeholder="Image" />
+                        </span>
+                    </p>
+                    <p>
+                        <label htmlFor="recommendedUrl">Where to find</label>
+                        <span>
+                            <input type="text" name="recommendedUrl" id="recommendedUrl" placeholder="Website link" />
+                        </span>
+                    </p>
+                    <p>
+                        <label htmlFor="genre">Genre</label>
+                        <span>
+                            <select id="genre" name="genre">
+                                <option value="science-fiction">science fiction</option>
+                                <option value="historical-fiction">historical fiction</option>
+                                <option value="romance">romance</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </span>
+                    </p>
+                    <input className="button" type="submit" value="Create Book" />
+                </fieldset>
+            </form>
         </section>
     );
 }
