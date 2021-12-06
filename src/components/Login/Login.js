@@ -14,7 +14,7 @@ const Login = ({onLogin}) => {
         authService.login(email);
         onLogin(email);
 
-        navigate('/');
+        navigate('/dashboard');
     }
 
     return (
