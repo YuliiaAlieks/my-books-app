@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import CreateBook from './components/CreateBook';
+import Dashboard from './components/Dashboard';
+import Details from './components/Details';
+import Header from './components/Header';
+import Login from './components/Login';
+import OwnedBooks from './components/OwnedBooks';
+import Register from './components/Register';
+import WishList from './components/WishList';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="container">
+      <Header />
+      <main id="site-content">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/my-wish-list" element={<WishList />} />
+          <Route path="/my-books" element={<OwnedBooks />} />
+          <Route path="/create" element={<CreateBook />} />
+        </Routes>
+
+      </main>
     </div>
   );
 }
