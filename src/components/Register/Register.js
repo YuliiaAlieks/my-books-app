@@ -10,7 +10,7 @@ const Register = () => {
 
     return (
         <section>
-            <form id="register-form" onSubmit={onRegister} >
+            <form id="register-form" onSubmit={onRegister} method="POST" >
                 <fieldset>
                     <label>REGISTER</label>
                     <p>
