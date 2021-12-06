@@ -4,7 +4,7 @@ const Login = () => {
 
         const formData = new FormData(e.currentTarget);
         console.log("🧚 ~ formData - email", formData.get('email'));
-        
+        console.log("🧚 ~ formData - password", formData.get('password'));
     }
 
     return (
@@ -13,18 +13,18 @@ const Login = () => {
                 <fieldset>
                     <label>LOGIN</label>
                     <p>
-                        <label for="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <span>
                             <input type="text" name="email" id="email" placeholder="Email" />
                         </span>
                     </p>
                     <p>
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <span>
                             <input type="password" name="password" id="password" placeholder="Password" />
                         </span>
                     </p>
-                    <input class="button" type="submit" value="Login" />
+                    <input className="button" type="submit" value="Login" />
 
                 </fieldset>
             </form>
