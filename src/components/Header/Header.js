@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Header = ({
     isAuthenticated,
-    username
+    user
 }) => {
 
     const guestNavigation = (
@@ -14,7 +14,7 @@ const Header = ({
 
     const userNavigation = (
         <div id="user">
-            <span>Welcome, email</span>
+            <span>Welcome, {user}</span>
             <Link className="button" to="create" >Add Book</Link>
             <Link className="button" to="my-wish-list" >My Wish List</Link>
             <Link className="button" to="my-books" >My Books</Link>
