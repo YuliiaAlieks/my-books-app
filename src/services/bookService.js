@@ -20,3 +20,8 @@ export const create = async (bookData) => {
     const result = await response.json();
     return result;
 }
+
+export const getOne = (bookId) => {
+    return fetch(`${baseUrl}/recommened-books/${bookId}`)
+        .then(res => res.json());
+}

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const RecommendedBook = ({book}) => {
 
     return (
@@ -6,7 +8,7 @@ const RecommendedBook = ({book}) => {
             <p>{book.author}</p>
             <p>{book.genre}</p>
             <p className="img"><img src={book.imageUrl} /></p>
-            <a className="button" href="#">Details</a>
+            <Link className="button" to={`/details/${book._id}`}>Details</Link>
         </li>
     );
 
