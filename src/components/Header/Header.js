@@ -18,7 +18,7 @@ const Header = ({
             <Link className="button" to="create" >Add Book</Link>
             <Link className="button" to="my-wish-list" >My Wish List</Link>
             <Link className="button" to="my-books" >My Books</Link>
-            <Link className="button" to="#">Logout</Link>
+            <Link className="button" to="logout">Logout</Link>
         </div>
     );
 

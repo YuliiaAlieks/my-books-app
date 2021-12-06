@@ -12,6 +12,7 @@ import OwnedBooks from './components/OwnedBooks';
 import Register from './components/Register';
 import WishList from './components/WishList';
 import { isAuthenticated } from './services/authService';
+import Logout from './components/Logout';
 
 
 
@@ -34,6 +35,13 @@ function App() {
     });
   }
 
+  const onLogout = () => {
+    setUserInfo({
+      isAuthenticated: false,
+      user: null
+    });
+  }
+
   return (
     <div id="container">
       <Header {...userInfo} />
@@ -42,6 +50,7 @@ function App() {
         <Routes>
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/login" element={<Login onLogin={onLogin} />} />
+          <Route path="/logout" element={<Logout onLogout={onLogout} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/my-wish-list" element={<WishList />} />
           <Route path="/my-books" element={<OwnedBooks />} />
