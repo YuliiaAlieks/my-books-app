@@ -6,9 +6,11 @@ const Details = () => {
     const [book, setBook] = useState({});
     const { bookId } = useParams();
 
-    useEffect(async () => {
-        const bookResult = await bookService.getOne(bookId);
-        setBook(bookResult);
+    useEffect(() => {
+        bookService.getOne(bookId)
+            .then(result => {
+                setBook(result);
+            });
 
     }, []);
 
