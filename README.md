@@ -1,3 +1,5 @@
+Bookstore app - showcasing forms, CRUD operations and user roles
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
