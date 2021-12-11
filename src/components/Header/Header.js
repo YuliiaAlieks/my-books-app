@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Header = ({
-    isAuthenticated,
-    user
-}) => {
+const Header = ({email}) => {
 
     const guestNavigation = (
         <div id="guest">
@@ -14,7 +11,7 @@ const Header = ({
 
     const userNavigation = (
         <div id="user">
-            <span>Welcome, {user}</span>
+            <span>Welcome, {email}</span>
             <Link className="button" to="create" >Add Book</Link>
             <Link className="button" to="my-wish-list" >My Wish List</Link>
             <Link className="button" to="my-books" >My Books</Link>
@@ -28,7 +25,7 @@ const Header = ({
                 <section className="navbar-dashboard">
                     <Link to="/dashboard" >Dashboard</Link>
                     {
-                        isAuthenticated
+                        email
                             ? userNavigation
                             : guestNavigation
 

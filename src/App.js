@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import * as authService from './services/authService';
+import { AuthContext } from './contexts/AuthContext';
 import CreateBook from './components/CreateBook';
 import Dashboard from './components/Dashboard';
 import Details from './components/Details';
@@ -17,49 +17,43 @@ import Logout from './components/Logout';
 
 
 function App() {
-  const [userInfo, setUserInfo] = useState({ isAuthenticated: false, username: '' });
 
-  useEffect(() => {
-    const user = authService.getUser();
-    setUserInfo({
-      isAuthenticated: Boolean(user),
-      user
-    });
+  const [user, setUser] = useState({
+    accessToken: '',
+    email: '',
+    _id: ''
+  });
 
-  }, []);
 
-  const onLogin = (username) => {
-    setUserInfo({
-      isAuthenticated: true,
-      user: username
-    });
+  const onLogin = (authData) => {
+    setUser(authData);
   }
 
   const onLogout = () => {
-    setUserInfo({
-      isAuthenticated: false,
-      user: null
-    });
+
   }
 
   return (
-    <div id="container">
-      <Header {...userInfo} />
+    <AuthContext.Provider value={true}>
+      <div id="container">
+        <Header email={user.email}/>
 
-      <main id="site-content">
-        <Routes>
-          <Route path="/dashboard/*" element={<Dashboard />} />
-          <Route path="/login" element={<Login onLogin={onLogin} />} />
-          <Route path="/logout" element={<Logout onLogout={onLogout} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/my-wish-list" element={<WishList />} />
-          <Route path="/my-books" element={<OwnedBooks />} />
-          <Route path="/create" element={<CreateBook />} />
-          <Route path="/details/:bookId" element={<Details />} />
-        </Routes>
+        <main id="site-content">
+          <Routes>
+            <Route path="/dashboard/*" element={<Dashboard />} />
+            <Route path="/login" element={<Login onLogin={onLogin} />} />
+            <Route path="/logout" element={<Logout onLogout={onLogout} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/my-wish-list" element={<WishList />} />
+            <Route path="/my-books" element={<OwnedBooks />} />
+            <Route path="/create" element={<CreateBook />} />
+            <Route path="/details/:bookId" element={<Details />} />
+          </Routes>
 
-      </main>
-    </div>
+        </main>
+      </div>
+    </AuthContext.Provider>
+
   );
 }
 

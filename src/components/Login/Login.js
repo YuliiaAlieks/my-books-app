@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import * as authService from '..//../services/authService';
 
-const Login = ({onLogin}) => {
+const Login = ({ onLogin }) => {
     const navigate = useNavigate();
 
     const onLoginHandler = (e) => {
@@ -10,11 +10,20 @@ const Login = ({onLogin}) => {
 
         const formData = new FormData(e.currentTarget);
         const email = formData.get('email');
+        const password = formData.get('password');
 
-        authService.login(email);
-        onLogin(email);
+        authService.login(email, password)
+            .then(authData => {
+                console.log('logged');
+                
+                onLogin(authData);
+                navigate('/dashboard');
+            })
+            .catch(err => {
+                //TODO: Show notification
+                console.log("🧚 ~ err", err);
 
-        navigate('/dashboard');
+            });
     }
 
     return (
