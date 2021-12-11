@@ -23,7 +23,7 @@ export const create = async (bookData, token) => {
             'content-type': 'application/json',
             'X-Authorization': token
         },
-        body: JSON.stringify({...bookData, likes: 0})
+        body: JSON.stringify({...bookData, likes: []})
     });
 
     const result = await response.json();
