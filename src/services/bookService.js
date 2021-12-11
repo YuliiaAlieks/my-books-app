@@ -30,6 +30,16 @@ export const create = async (bookData, token) => {
     return result;
 }
 
+export const deleteBook = (bookId, token) => {
+    return fetch(`${baseUrl}/my-books/${bookId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-Authorization': token
+        }
+    })
+        .then(res => res.json());
+}
+
 export const getOne = (bookId) => {
     return fetch(`${baseUrl}/my-books/${bookId}`)
         .then(res => res.json());

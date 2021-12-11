@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import * as bookService from '..//../services/bookService';
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Details = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [book, setBook] = useState({});
     const { bookId } = useParams();
 
@@ -17,10 +18,24 @@ const Details = () => {
 
     }, []);
 
+    const deleteHandler = (e) => {
+        e.preventDefault();
+        // throw alert("Are you sure you want to delete the book?");
+        bookService.deleteBook(bookId, user.accessToken)
+            .then(() => {
+                navigate('/my-books');
+            });
+
+    }
+
+    const editHandler = () => {
+
+    }
+
     const ownerButtons = (
         <>
             <a className="button" href="#">Edit</a>
-            <a className="button" href="#">Delete</a>
+            <a className="button" href="#" onClick={deleteHandler}>Delete</a>
         </>
     );
 
@@ -42,7 +57,7 @@ const Details = () => {
 
 
                     <div className="likes">
-                        <img className="hearts" src="/images/heart.png" />
+                        <img className="hearts" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/285/red-heart_2764-fe0f.png" />
                         <span id="total-likes">Likes: {book.likes?.length}</span>
                     </div>
 
