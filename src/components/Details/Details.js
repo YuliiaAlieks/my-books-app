@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import * as bookService from '..//../services/bookService';
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -16,7 +16,7 @@ const Details = () => {
                 setBook(result);
             });
 
-    }, []);
+    }, [bookId]);
 
     const deleteHandler = (e) => {
         e.preventDefault();
@@ -25,7 +25,6 @@ const Details = () => {
             .then(() => {
                 navigate('/my-books');
             });
-
     }
 
     const editHandler = () => {
@@ -34,7 +33,7 @@ const Details = () => {
 
     const ownerButtons = (
         <>
-            <a className="button" href="#">Edit</a>
+            <Link className="button" to="edit">Edit</Link>
             <a className="button" href="#" onClick={deleteHandler}>Delete</a>
         </>
     );
