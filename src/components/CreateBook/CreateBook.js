@@ -1,31 +1,36 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as bookService from '..//../services/bookService';
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 const CreateBook = () => {
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
     const onBookCreate = (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        let title = formData.get('title');
-        let author = formData.get('author');
-        let year = formData.get('year');
-        let description = formData.get('description');
-        let imageUrl = formData.get('imageUrl');
-        let recommendedUrl = formData.get('recommendedUrl');
-        let genre = formData.get('genre');
+        const title = formData.get('title');
+        const author = formData.get('author');
+        const year = formData.get('year');
+        const description = formData.get('description');
+        const imageUrl = formData.get('imageUrl');
+        const recommendedUrl = formData.get('recommendedUrl');
+        const genre = formData.get('genre');
 
         bookService.create({
-                title,
-                author,
-                year,
-                description,
-                imageUrl,
-                recommendedUrl,
-                genre            
-        }).then(result => {
-            navigate('/dashboard');
-        });
+            title,
+            author,
+            year,
+            description,
+            imageUrl,
+            recommendedUrl,
+            genre
+        }, user.accessToken)
+            .then(result => {
+                navigate('/my-books');
+            });
 
     }
 
