@@ -25,7 +25,7 @@ function App() {
   });
 
 
-  const onLogin = (authData) => {
+  const login = (authData) => {
     setUser(authData);
   }
 
@@ -34,15 +34,15 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={true}>
+    <AuthContext.Provider value={{user, login}}>
       <div id="container">
-        <Header email={user.email}/>
+        <Header />
 
         <main id="site-content">
           <Routes>
             <Route path="/dashboard/*" element={<Dashboard />} />
-            <Route path="/login" element={<Login onLogin={onLogin} />} />
-            <Route path="/logout" element={<Logout onLogout={onLogout} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/my-wish-list" element={<WishList />} />
             <Route path="/my-books" element={<OwnedBooks />} />

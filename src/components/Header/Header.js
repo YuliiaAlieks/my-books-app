@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
-const Header = ({email}) => {
+const Header = () => {
+    const { user } = useContext(AuthContext);
 
     const guestNavigation = (
         <div id="guest">
@@ -11,7 +14,7 @@ const Header = ({email}) => {
 
     const userNavigation = (
         <div id="user">
-            <span>Welcome, {email}</span>
+            <span>Welcome, {user.email}</span>
             <Link className="button" to="create" >Add Book</Link>
             <Link className="button" to="my-wish-list" >My Wish List</Link>
             <Link className="button" to="my-books" >My Books</Link>
@@ -25,7 +28,7 @@ const Header = ({email}) => {
                 <section className="navbar-dashboard">
                     <Link to="/dashboard" >Dashboard</Link>
                     {
-                        email
+                        user.email
                             ? userNavigation
                             : guestNavigation
 
