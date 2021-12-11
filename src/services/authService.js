@@ -15,12 +15,30 @@ export const login = async (email, password) => {
     } else {
         throw jsonResult.message;
     }
- 
+
 }
 
-export const logout = () => {
-    fetch(`${baseUrl}/users/logout`)
+export const register = (email, password) => {
+    return fetch(`${baseUrl}/users/register`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+    })
+        .then(res => {
+            console.log("🧚 ~ res1", res)
+
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw res.statusText;
+            }
+        });
 }
+
+export const logout = () => fetch(`${baseUrl}/users/logout`);
+
 
 export const getUser = () => {
     const username = localStorage.getItem('username');

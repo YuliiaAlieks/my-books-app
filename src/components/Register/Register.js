@@ -1,16 +1,37 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import * as authService from '../../services/authService';
+import { AuthContext } from '../../contexts/AuthContext';
+
+
+
 const Register = () => {
-    const onRegister = (e) => {
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const registerHandler = (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
-        console.log("🧚 ~ formData-email", formData.get('email'));
-        console.log("🧚 ~ formData-password", formData.get('password'));
-        
+        const { email, password } = Object.fromEntries(new FormData(e.currentTarget));
+
+        authService.register(email, password)
+            .then(authData => {
+                console.log("🧚 ~ authData", authData);
+                login(authData);
+                navigate('/dashboard');
+
+            })
+            .catch(err => {
+                //TODO: Show notification
+                console.log("🧚 ~ err", err);
+
+            });
     }
 
     return (
         <section>
-            <form id="register-form" onSubmit={onRegister} method="POST" >
+            <form id="register-form" onSubmit={registerHandler} method="POST" >
                 <fieldset>
                     <label>REGISTER</label>
                     <p>
