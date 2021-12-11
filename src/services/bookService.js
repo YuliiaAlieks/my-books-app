@@ -23,7 +23,7 @@ export const create = async (bookData, token) => {
             'content-type': 'application/json',
             'X-Authorization': token
         },
-        body: JSON.stringify(bookData)
+        body: JSON.stringify({...bookData, likes: 0})
     });
 
     const result = await response.json();
@@ -36,6 +36,6 @@ export const getOne = (bookId) => {
 }
 
 export const getOneRecommended = (bookId) => {
-    return fetch(`${baseUrl}/my-books/${bookId}`)
+    return fetch(`http://localhost:3030/jsonstore/recommened-books/${bookId}`)
         .then(res => res.json());
 }

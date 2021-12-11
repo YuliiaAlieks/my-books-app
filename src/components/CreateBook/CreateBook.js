@@ -29,7 +29,7 @@ const CreateBook = () => {
             genre
         }, user.accessToken)
             .then(result => {
-                navigate('/my-books');
+                navigate('/dashboard');
             });
 
     }

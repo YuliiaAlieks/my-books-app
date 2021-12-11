@@ -6,7 +6,7 @@ const BookList = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        bookService.getRecommended()
+        bookService.getOwned()
             .then(result => {
                 console.log("🧚 ~ result", result)
 
