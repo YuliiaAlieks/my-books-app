@@ -12,7 +12,7 @@ import OwnedBooks from './components/OwnedBooks';
 import Register from './components/Register';
 import WishList from './components/WishList';
 import Logout from './components/Logout';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
