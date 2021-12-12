@@ -1,20 +1,11 @@
+import {request} from './requester';
+
 const baseUrl = 'http://localhost:3030/data';
 
-export const getRecommended = async () => {
-    const response = await fetch(`http://localhost:3030/jsonstore/recommened-books`);
-    const books = await response.json();
-    const result = Object.values(books);
+export const getRecommended = () => request(`http://localhost:3030/jsonstore/recommened-books`);
 
-    return result;
-}
+export const getOwned = () => request(`${baseUrl}/my-books`);
 
-export const getOwned = async () => {
-    const response = await fetch(`${baseUrl}/my-books`);
-    const books = await response.json();
-    const result = Object.values(books);
-
-    return result;
-}
 
 export const create = async (bookData, token) => {
     const response = await fetch(`${baseUrl}/my-books`, {

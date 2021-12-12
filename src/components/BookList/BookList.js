@@ -9,8 +9,11 @@ const BookList = () => {
         bookService.getOwned()
             .then(result => {
                 console.log("🧚 ~ result", result)
-
                 setBooks(result);
+            })
+            .catch(err => {
+            console.log("🧚 ~ err", err)
+                
             });
     }, []);
 

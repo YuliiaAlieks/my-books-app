@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import BookList from "../BookList/BookList";
 
 const Dashboard = () => {
@@ -6,9 +6,9 @@ const Dashboard = () => {
         <section id="dashboard-page" className="dashboard">
             <h1>Dashboard</h1>
 
-            <Routes>
-                <Route path="/" element={<BookList />} />
-            </Routes>
+            <section>
+                <BookList />
+            </section>
         </section>
 
     );
