@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+
 import * as bookService from '..//../services/bookService';
 import { useAuthContext } from "../../contexts/AuthContext";
 import ConfirmDialog from "../../Common/ConfirmDialog/ConfirmDialog";
@@ -23,7 +24,6 @@ const Details = () => {
 
     const deleteHandler = (e) => {
         e.preventDefault();
-        // throw alert("Are you sure you want to delete the book?");
         bookService.deleteBook(bookId, user.accessToken)
             .then(() => {
                 navigate('/my-books');
@@ -39,6 +39,27 @@ const Details = () => {
 
     }
 
+    // const likeBtnClick = () => {
+    //     console.log('clicked on Like');
+    //     if(book.likes.includes(user._id)) {
+    //         //add notification
+    //         console.log('User already liked it');
+    //         return;
+    //     }
+
+    //     const likes = [...book.likes, user._id];
+    //     const likedBook = {...book, likes};
+
+    //     bookService.like(bookId, likedBook, user.accessToken)
+    //         .then(resLikes => {
+    //         console.log("🧚 ~ resLikes", resLikes);
+    //             setBook(state => ({
+    //                 ...state,
+    //                 likes
+    //             }));
+    //         })
+    // }
+
     const ownerButtons = (
         <>
             <Link className="button" to="edit">Edit</Link>
@@ -46,7 +67,7 @@ const Details = () => {
         </>
     );
 
-    const guestButtons = (<a className="button" href="#">Like</a>);
+    const guestButtons = (<button className="button" >Like</button>);
 
     return (
         <>
