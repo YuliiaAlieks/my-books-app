@@ -54,7 +54,7 @@ const Details = () => {
 
     const ownerButtons = (
         <>
-            <Link className="button" to="/edit">Edit</Link>
+            <Link className="button" to={`/edit/${bookId}`}>Edit</Link>
             <a className="button" href="#" onClick={deleteClickHandler}>Delete</a>
         </>
     );
