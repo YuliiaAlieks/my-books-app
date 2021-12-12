@@ -2,8 +2,7 @@ import './App.css';
 
 import { Routes, Route } from 'react-router-dom';
 
-import { AuthContext } from './contexts/AuthContext';
-import useLocalStorage from './hooks/useLocalStorage';
+import { AuthProvider } from './contexts/AuthContext';
 import CreateBook from './components/CreateBook';
 import Dashboard from './components/Dashboard';
 import Details from './components/Details';
@@ -14,25 +13,11 @@ import Register from './components/Register';
 import WishList from './components/WishList';
 import Logout from './components/Logout';
 
-const initialAuthstate = {
-  accessToken: '',
-  email: '',
-  _id: ''
-}
+
 
 function App() {
-  const [user, setUser] = useLocalStorage('user', initialAuthstate);
-
-  const login = (authData) => {
-    setUser(authData);
-  }
-
-  const logout = () => {
-    setUser(initialAuthstate);
-  }
-
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthProvider>
       <div id="container">
         <Header />
 
@@ -50,7 +35,7 @@ function App() {
 
         </main>
       </div>
-    </AuthContext.Provider>
+    </AuthProvider>
 
   );
 }

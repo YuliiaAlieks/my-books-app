@@ -55,6 +55,3 @@ export const getUser = () => {
     return username;
 }
 
-export const isAuthenticated = () => {
-    return Boolean(getUser());
-}
