@@ -31,7 +31,7 @@ function App() {
             <Route path="/my-wish-list" element={<WishList />} />
             <Route path="/my-books" element={<OwnedBooks />} />
             <Route path="/create" element={<CreateBook />} />
-            <Route path="/edit" element={<Edit />} />
+            <Route path="/edit/:bookId" element={<Edit />} />
             <Route path="/details/:bookId" element={<Details />} />
           </Routes>
 

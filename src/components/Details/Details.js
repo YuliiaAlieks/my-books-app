@@ -1,26 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 
 import * as bookService from '..//../services/bookService';
 import { useAuthContext } from "../../contexts/AuthContext";
 import ConfirmDialog from "../../Common/ConfirmDialog/ConfirmDialog";
+import useBookState from "../../hooks/useBookState";
 
 
 const Details = () => {
-    const { user } = useAuthContext();
     const navigate = useNavigate();
-    const [book, setBook] = useState({});
-    const [showDelDialog, setShowDelDialog] = useState(false);
+    const { user } = useAuthContext();
     const { bookId } = useParams();
-
-    useEffect(() => {
-        bookService.getOne(bookId)
-            .then(result => {
-                console.log("🧚 ~ details result", result)
-                setBook(result);
-            });
-
-    }, [bookId]);
+    const [book, setBook] = useBookState(bookId);
+    const [showDelDialog, setShowDelDialog] = useState(false);
 
     const deleteHandler = (e) => {
         e.preventDefault();

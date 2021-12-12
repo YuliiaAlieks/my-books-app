@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 
 import * as bookService from '../../services/bookService';
+import useBookState from '../../hooks/useBookState';
 
 
 const Edit = () => {
-    const [book, setBook] = useState({});
-    useEffect(() => {
+    const { bookId } = useParams();
+    const [book, setBook] = useBookState(bookId);
 
-    }, []);
 
     const bookEditsubmitHandler = (e) => {
         e.preventDefault();
