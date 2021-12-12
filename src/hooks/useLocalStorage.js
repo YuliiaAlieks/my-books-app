@@ -9,7 +9,7 @@ const useLocalStorage = (key, initialValue) => {
             return item ? JSON.parse(item) : initialValue;
         } catch (error) {
             console.log("🧚 ~ error", error);
-            return initialValue;
+            return initialValue; 
         }
     });
 

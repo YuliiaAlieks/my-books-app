@@ -14,27 +14,25 @@ import Register from './components/Register';
 import WishList from './components/WishList';
 import Logout from './components/Logout';
 
-
+const initialAuthstate = {
+  accessToken: '',
+  email: '',
+  _id: ''
+}
 
 function App() {
-
-  const [user, setUser] = useLocalStorage('user', {
-    accessToken: '',
-    email: '',
-    _id: ''
-  });
-
+  const [user, setUser] = useLocalStorage('user', initialAuthstate);
 
   const login = (authData) => {
     setUser(authData);
   }
 
-  const onLogout = () => {
-
+  const logout = () => {
+    setUser(initialAuthstate);
   }
 
   return (
-    <AuthContext.Provider value={{user, login}}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       <div id="container">
         <Header />
 
