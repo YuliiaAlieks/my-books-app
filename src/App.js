@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
 import CreateBook from './components/CreateBook';
+import Edit from './components/Edit/Edit';
 import Dashboard from './components/Dashboard';
 import Details from './components/Details';
 import Header from './components/Header';
@@ -30,6 +31,7 @@ function App() {
             <Route path="/my-wish-list" element={<WishList />} />
             <Route path="/my-books" element={<OwnedBooks />} />
             <Route path="/create" element={<CreateBook />} />
+            <Route path="/edit" element={<Edit />} />
             <Route path="/details/:bookId" element={<Details />} />
           </Routes>
 
