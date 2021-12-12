@@ -11,7 +11,7 @@ const Details = () => {
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const { bookId } = useParams();
-    const [book, setBook] = useBookState(bookId);
+    const [book] = useBookState(bookId);
     const [showDelDialog, setShowDelDialog] = useState(false);
 
     const deleteHandler = (e) => {

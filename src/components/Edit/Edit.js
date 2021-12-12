@@ -1,7 +1,9 @@
 import { useParams } from 'react-router';
+import { useState } from 'react';
 
 import * as bookService from '../../services/bookService';
 import useBookState from '../../hooks/useBookState';
+
 
 const genres = [
     {value: 'science-fiction', text: 'science fiction'},
@@ -13,13 +15,29 @@ const genres = [
 
 const Edit = () => {
     const { bookId } = useParams();
-    const [book, setBook] = useBookState(bookId);
+    const [errors, setErrors] = useState({title: false});
+    const [book] = useBookState(bookId);
 
 
     const bookEditsubmitHandler = (e) => {
         e.preventDefault();
         console.log('Edited');
     }
+
+    //can create separate js file (EditHelpers) to move validation and other functions there
+    //example of validation 
+    //need to fix delay in changing border color
+    const titleChangeHandler = (e) => {
+        let currTitle = e.target.value;
+
+        if (currTitle.length < 2) {
+            console.log("🧚 ~ currTitle", currTitle)
+            setErrors(state => ({...state, title: 'Title should be at least 2 characters long'}));
+            console.log("🧚 ~ errors.title", errors.title)
+        } else {
+            setErrors(state => ({...state, title: false}));
+        }
+    };
 
 
     return (
@@ -29,8 +47,11 @@ const Edit = () => {
                     <legend>Edit</legend>
                     <p>
                         <label htmlFor="title">Title</label>
-                        <span>
-                            <input type="text" name="title" id="title" defaultValue={book.title} />
+                        <span className='input' style={{borderColor: errors.title ? 'red' : 'inherit'}}>
+                            <input type="text" name="title" id="title" defaultValue={book.title} onBlur={titleChangeHandler} />
+                        </span>
+                        <span style={{display: errors.title ? 'inline' : 'hidden'}}>  
+                            {errors.title}
                         </span>
                     </p>
                     <p>
@@ -71,7 +92,7 @@ const Edit = () => {
                             </select>
                         </span>
                     </p>
-                    <input className="button" type="submit" value="Edit Book" />
+                    <input className="button" type="submit" value="Submit change" />
                 </fieldset>
             </form>
         </section>
