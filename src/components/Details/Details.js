@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import * as bookService from '..//../services/bookService';
-import { AuthContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const Details = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuthContext();
     const navigate = useNavigate();
     const [book, setBook] = useState({});
     const { bookId } = useParams();
