@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { notificationTypes, useNotificationContext } from '../../contexts/NotificationContext';
 import * as authService from '../../services/authService';
 
 const Login = () => {
     const { login } = useAuthContext();
+    const { addNotification } = useNotificationContext();
     const navigate = useNavigate();
 
     const onLoginHandler = (e) => {
@@ -18,6 +20,7 @@ const Login = () => {
                 console.log('logged');
                 
                 login(authData);
+                addNotification('You logged in successfully', notificationTypes.success);
                 navigate('/dashboard');
             })
             .catch(err => {

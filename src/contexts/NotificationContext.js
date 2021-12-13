@@ -3,22 +3,27 @@ import { createContext, useContext, useState, useCallback } from "react";
 const NotificationContext = createContext();
 
 export const notificationTypes = {
-    error: 'error',
-    warn: 'warn',
+    error: 'danger',
+    warn: 'warning',
     info: 'info',
     success: 'success',
 }
 
+const initialNotificationState = {show: false, message: '', type: notificationTypes.error};
+
 export const NotificationProvider = ({
     children
 }) => {
-    const [notification, setNotification] = useState({show: false, message: '', type: notificationTypes.error});
+    const [notification, setNotification] = useState(initialNotificationState);
+
     const addNotification = useCallback((message, type = notificationTypes.error) => {
         setNotification({show: true, message, type});
     }, []);
 
+    const hideNotification = useCallback(() => setNotification(initialNotificationState), []);
+
     return (
-        <NotificationContext.Provider value={{notification, addNotification}}>
+        <NotificationContext.Provider value={{notification, addNotification, hideNotification}}>
             {children}
         </NotificationContext.Provider>
     );
