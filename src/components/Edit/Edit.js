@@ -16,8 +16,7 @@ const genres = [
 const Edit = () => {
     const { bookId } = useParams();
     const [errors, setErrors] = useState({title: false});
-    const [book] = useBookState(bookId);
-
+    const [book, setBook] = useBookState(bookId);
 
     const bookEditsubmitHandler = (e) => {
         e.preventDefault();
@@ -87,7 +86,7 @@ const Edit = () => {
                     <p>
                         <label htmlFor="genre">Genre</label>
                         <span>
-                            <select id="genre" name="genre" value={book.genre}>
+                            <select id="genre" name="genre" value={book.genre} onChange={(e) => setBook(state => ({...state, genre: e.target.value}))}>
                                 {genres.map(g => <option key={g.value} value={g.value}>{g.text}</option>)}
                             </select>
                         </span>
