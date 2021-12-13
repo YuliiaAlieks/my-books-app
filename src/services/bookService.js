@@ -1,15 +1,21 @@
-import {request} from './requester';
+import * as request from './requester';
 
 const baseUrl = 'http://localhost:3030/data';
 
-export const getRecommended = () => request(`http://localhost:3030/jsonstore/recommened-books`);
+export const getRecommended = () => request.get(`http://localhost:3030/jsonstore/recommened-books`);
 export const getOneRecommended = (bookId) => {
     return fetch(`http://localhost:3030/jsonstore/recommened-books/${bookId}`)
         .then(res => res.json());
 }
 
 
-export const getOwned = () => request(`${baseUrl}/my-books`);
+export const getOwned = () => request.get(`${baseUrl}/my-books`);
+
+export const getOne = (bookId) => {
+    return fetch(`${baseUrl}/my-books/${bookId}`)
+        .then(res => res.json());
+}
+
 
 
 export const create = async (bookData, token) => {
@@ -36,10 +42,8 @@ export const deleteBook = (bookId, token) => {
         .then(res => res.json());
 }
 
-export const getOne = (bookId) => {
-    return fetch(`${baseUrl}/my-books/${bookId}`)
-        .then(res => res.json());
-}
+export const update = (bookId, bookData) => request.put(`${baseUrl}/my-books/${bookId}`, bookData);
+
 
 
 // export const like = (bookId, book, token) => {

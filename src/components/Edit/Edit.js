@@ -21,6 +21,11 @@ const Edit = () => {
     const bookEditsubmitHandler = (e) => {
         e.preventDefault();
         console.log('Edited');
+
+        const bookData = Object.fromEntries(new FormData(e.currentTarget));
+        console.log("🧚 ~ bookData at Edit", bookData)
+
+        bookService.update(bookId, bookData);
     }
 
     //can create separate js file (EditHelpers) to move validation and other functions there
