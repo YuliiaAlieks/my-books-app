@@ -1,34 +1,32 @@
 import { useEffect, useState } from "react";
-import RecommendedBook from "../BookList/RecommendedBook/";
 import * as bookService from "../../services/bookService";
+import BookList from "../BookList/BookList";
 
-const BookList = () => {
+const OwnedBooks = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
         bookService.getOwned()
             .then(result => {
-                console.log("🧚 ~ result", result)
-
+                // console.log("🧚 ~ result", result)
                 setBooks(result);
+            })
+            .catch(err => {
+                console.log("🧚 ~ err", err);
             });
     }, []);
 
     return (
-        <>
-            {books.length > 0
-                ? (
-                    <ul className="other-books-list">
-                        {books.map(b => <RecommendedBook key={b._id} book={b} />)}
+        <section id="dashboard-page" className="dashboard">
+            <h1>My Books</h1>
 
-                    </ul>
-                )
-                : <p>No books are in my personal list</p>
-            }
-        </>
+            <section>
+                <BookList books={books} />
+            </section>
+        </section>
 
     );
 
 }
 
-export default BookList;
+export default OwnedBooks;

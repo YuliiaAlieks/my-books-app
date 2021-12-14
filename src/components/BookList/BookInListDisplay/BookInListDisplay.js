@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const RecommendedBook = ({book}) => {
+const BookInListDisplay = ({book}) => {
 
     return (
         <li>
@@ -14,4 +14,4 @@ const RecommendedBook = ({book}) => {
 
 }
 
-export default RecommendedBook;
+export default BookInListDisplay;
