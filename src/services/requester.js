@@ -44,3 +44,4 @@ function getToken() {
 
 export const get = (url) => request('GET', url);
 export const put = (url, data) => request('PUT', url, data);
+export const post = (url, data) => request('POST', url, data);

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 
 import * as bookService from '..//../services/bookService';
+import * as likeService from '..//../services/likeService';
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useNotificationContext, notificationTypes } from "../../contexts/NotificationContext";
 import ConfirmDialog from "../../Common/ConfirmDialog/ConfirmDialog";
 import useBookState from "../../hooks/useBookState";
 
@@ -10,9 +12,17 @@ import useBookState from "../../hooks/useBookState";
 const Details = () => {
     const navigate = useNavigate();
     const { user } = useAuthContext();
+    const { addNotification } = useNotificationContext();
     const { bookId } = useParams();
-    const [book] = useBookState(bookId);
+    const [book, setBook] = useBookState(bookId);
     const [showDelDialog, setShowDelDialog] = useState(false);
+
+    useEffect(() =>{
+        likeService.getCount(bookId)
+            .then(likeCount => {
+                setBook(state => ({...state, likes: likeCount}))
+            })
+    }, []);
 
     const deleteHandler = (e) => {
         e.preventDefault();
@@ -31,26 +41,13 @@ const Details = () => {
 
     }
 
-    // const likeBtnClick = () => {
-    //     console.log('clicked on Like');
-    //     if(book.likes.includes(user._id)) {
-    //         //add notification
-    //         console.log('User already liked it');
-    //         return;
-    //     }
-
-    //     const likes = [...book.likes, user._id];
-    //     const likedBook = {...book, likes};
-
-    //     bookService.like(bookId, likedBook, user.accessToken)
-    //         .then(resLikes => {
-    //         console.log("🧚 ~ resLikes", resLikes);
-    //             setBook(state => ({
-    //                 ...state,
-    //                 likes
-    //             }));
-    //         })
-    // }
+    const likeBtnClick = () => {
+        likeService.like(user._id, bookId)
+            .then(() => {
+                setBook(state => ({...state, likes: state.likes + 1}));
+                addNotification('Successfully liked', notificationTypes.success);
+            });
+    }
 
     const ownerButtons = (
         <>
@@ -59,11 +56,11 @@ const Details = () => {
         </>
     );
 
-    const guestButtons = (<button className="button" >Like</button>);
+    const guestButtons = (<button className="button" onClick={likeBtnClick}>Like</button>);
 
     return (
         <>
-            <ConfirmDialog show={showDelDialog} onClose={() => setShowDelDialog(false)} onSave={deleteHandler}/>
+            <ConfirmDialog show={showDelDialog} onClose={() => setShowDelDialog(false)} onSave={deleteHandler} />
             <section id="details-page">
                 <div>
                     <h3>{book.title}</h3>
@@ -80,7 +77,7 @@ const Details = () => {
 
                         <div className="likes">
                             <img className="hearts" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/285/red-heart_2764-fe0f.png" alt="heart" />
-                            <span id="total-likes">Likes: {book.likes?.length}</span>
+                            <span id="total-likes">Likes: {book.likes}</span>
                         </div>
 
                     </div>
