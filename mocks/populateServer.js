@@ -44,11 +44,11 @@ const mockData = {
     }
 }
 
-const baseUrl = 'http://localhost:3030/jsonstore';
+const baseUrl = 'http://localhost:3030/data';
 
 const postBook = async (bookData) => {
 
-    const response = await fetch(`${baseUrl}/recommened-books`, {
+    const response = await fetch(`${baseUrl}/books`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

@@ -14,9 +14,7 @@ const BookList = ({books}) => {
                 : <p>No books are stored</p>
             }
         </>
-
     );
-
 }
 
 export default BookList;

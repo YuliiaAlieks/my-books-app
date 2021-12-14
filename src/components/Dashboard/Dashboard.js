@@ -6,7 +6,7 @@ const Dashboard = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        bookService.getRecommended()
+        bookService.getAll()
             .then(result => {
             // console.log("🧚 ~ result", result)
                 setBooks(result);
@@ -19,12 +19,10 @@ const Dashboard = () => {
     return (
         <section id="dashboard-page" className="dashboard">
             <h1>Dashboard</h1>
-
             <section>
                 <BookList books={books}/>
             </section>
         </section>
-
     );
 }
 

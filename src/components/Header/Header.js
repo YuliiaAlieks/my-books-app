@@ -32,7 +32,6 @@ const Header = () => {
                             : guestNavigation
 
                     }
-
                 </section>
             </nav>
         </header>

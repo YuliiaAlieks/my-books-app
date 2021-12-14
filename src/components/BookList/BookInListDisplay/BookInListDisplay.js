@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const BookInListDisplay = ({book}) => {
-
     return (
         <li>
             <h3>{book.title}</h3>
@@ -11,7 +10,6 @@ const BookInListDisplay = ({book}) => {
             <Link className="button" to={`/details/${book._id}`}>Details</Link>
         </li>
     );
-
 }
 
 export default BookInListDisplay;
