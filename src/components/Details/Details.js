@@ -23,6 +23,10 @@ const Details = () => {
                 console.log("🧚 ~ likes", likes);
                 setBook(state => ({ ...state, likes }));
             })
+            .catch(err => {
+                console.log("🧚 ~ likesResultErr", err);
+
+            })
     }, [bookId, setBook]);
 
     const deleteHandler = (e) => {

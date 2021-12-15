@@ -19,7 +19,16 @@ export const getOwned = (ownerId) => {
 
 export const getOne = (bookId) => {
     return fetch(`${baseUrl}/books/${bookId}`)
-        .then(res => res.json());
+        .then(res => {
+            console.log("🧚 ~ getOneFetchRes", res)
+
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw res.statusText;
+            }
+        });
+
 }
 
 
@@ -50,18 +59,3 @@ export const deleteBook = (bookId, token) => {
 
 export const update = (bookId, bookData) => request.put(`${baseUrl}/books/${bookId}`, bookData);
 
-
-
-// export const like = (bookId, book, token) => {
-//     //only owner of the book allowed to PATCH
-//     //How to process Likes?
-//     return fetch(`${baseUrl}/my-books/${bookId}`, {
-//         method: 'PUT',
-//         headers: {
-//             'content-type': 'application/json',
-//             'X-Authorization': token
-//         },
-//         body: JSON.stringify(book)
-//     })
-//         .then(res => res.json());
-// }
