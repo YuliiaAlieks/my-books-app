@@ -24,9 +24,8 @@ const Login = () => {
                 navigate('/dashboard');
             })
             .catch(err => {
-                //TODO: Show notification
                 console.log("🧚 ~ err", err);
-
+                addNotification("Email or password don't match. Please check your details and try again.", notificationTypes.error);
             });
     }
 
