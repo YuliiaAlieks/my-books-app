@@ -12,7 +12,7 @@ const Logout = () => {
             logout();
             navigate('/dashboard');
         })
-    }, []);
+    }, [logout, navigate, user.accessToken]);
 
   
 

@@ -16,7 +16,7 @@ const OwnedBooks = () => {
             .catch(err => {
                 console.log("🧚 ~ err", err);
             });
-    }, []);
+    }, [user._id]);
 
     return (
         <section id="dashboard-page" className="dashboard">

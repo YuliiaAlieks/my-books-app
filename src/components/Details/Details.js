@@ -23,7 +23,7 @@ const Details = () => {
                 console.log("🧚 ~ likes", likes);
                 setBook(state => ({ ...state, likes }));
             })
-    }, []);
+    }, [bookId, setBook]);
 
     const deleteHandler = (e) => {
         e.preventDefault();
@@ -65,7 +65,7 @@ const Details = () => {
     const ownerButtons = (
         <>
             <Link className="button" to={`/edit/${bookId}`}>Edit</Link>
-            <a className="button" href="#" onClick={deleteClickHandler}>Delete</a>
+            <button className="button" onClick={deleteClickHandler}>Delete</button>
         </>
     );
 
