@@ -1,39 +1,52 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import * as authService from '../../services/authService';
 import { useAuthContext } from '../../contexts/AuthContext';
-
+import { useNotificationContext, notificationTypes } from '../../contexts/NotificationContext';
 
 
 const Register = () => {
     const { login } = useAuthContext();
     const navigate = useNavigate();
+    const { addNotification } = useNotificationContext();
+    const [emailErrors, setEmailErrors] = useState({ title: false });
+    const [passwordErrors, setPasswordErrors] = useState({ title: false });
+    const [confirmationErrors, setConfirmationErrors] = useState({ title: false });
 
     const emailChangeHandler = (e) => {
         const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
         const emailInput = e.target.value;
         if (!emailInput.match(regexEmail)) {
-            console.log('You need to enter a valid email');
+            setEmailErrors(state => ({ ...state, title: 'You need to enter a valid email' }));
+        } else {
+            setEmailErrors(state => ({ ...state, title: false }));
         }
-        return;
     }
 
     const passwordChangeHandler = (e) => {
         const passwordInput = e.target.value;
 
-        if (passwordInput.length < 6) {
-            console.log('Password is too short. Password should be at least 6 characters long');
+        if (passwordInput.length < 6 && passwordInput.length > 0) {
+            setPasswordErrors(state => ({ ...state, title: 'Password is too short. Password should be at least 6 characters long' }));
+        } else if (passwordInput.length === 0) {
+            return;
+        } else {
+            setPasswordErrors(state => ({ ...state, title: false }));
         }
-        return;
     }
 
     const registerHandler = (e) => {
         e.preventDefault();
-        const { email, password } = Object.fromEntries(new FormData(e.currentTarget));
-        // console.log("🧚 ~ confirmPass", confirmPass)
-        // if (password !== confirmPass) {
-        //     return 'Password doesn`t match';
-        // }
+        const { email, password, confirmation } = Object.fromEntries(new FormData(e.currentTarget));
+   
+        if (password !== confirmation) {
+            setConfirmationErrors(state => ({ ...state, title: 'Password doesn`t match' }));
+            return;
+        } else {
+            setConfirmationErrors(state => ({ ...state, title: false }));
+        }
 
         authService.register(email, password)
             .then(authData => {
@@ -43,9 +56,8 @@ const Register = () => {
 
             })
             .catch(err => {
-                //TODO: Show notification
                 console.log("🧚 ~ err", err);
-
+                addNotification('Unfortunately, we could not register you. Please check your details and try again.', notificationTypes.error);
             });
     }
 
@@ -59,17 +71,26 @@ const Register = () => {
                         <span>
                             <input type="text" name="email" id="email" placeholder="Email" onBlur={emailChangeHandler} />
                         </span>
+                        <span style={{ display: emailErrors.title ? 'inline' : 'hidden' }}>
+                            {emailErrors.title}
+                        </span>
                     </p>
                     <p>
                         <label htmlFor="password">Password</label>
                         <span>
                             <input type="password" name="password" id="password" placeholder="Password" onBlur={passwordChangeHandler} />
                         </span>
+                        <span style={{ display: passwordErrors.title ? 'inline' : 'hidden' }}>
+                            {passwordErrors.title}
+                        </span>
                     </p>
                     <p>
                         <label htmlFor="conf-pass">Confirm Password</label>
                         <span>
-                            <input type="password" name="confirm-pass" id="conf-pass" placeholder="Repeat Password" />
+                            <input type="password" name="confirmation" id="conf-pass" placeholder="Repeat Password" />
+                        </span>
+                        <span style={{ display: confirmationErrors.title ? 'inline' : 'hidden' }}>
+                            {confirmationErrors.title}
                         </span>
                     </p>
                     <input className="button" type="submit" value="Register" />

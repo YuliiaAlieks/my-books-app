@@ -18,7 +18,7 @@ const Dashboard = () => {
 
     return (
         <section id="dashboard-page" className="dashboard">
-            <h1>Dashboard</h1>
+            <h1>Recommended books</h1>
             <section>
                 <BookList books={books}/>
             </section>
