@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import * as bookService from '..//../services/bookService';
 import { useAuthContext } from '../../contexts/AuthContext';
-
+import { genres } from '../../Common/genres';
 
 const CreateBook = () => {
     const { user } = useAuthContext();
@@ -9,14 +9,9 @@ const CreateBook = () => {
 
     const onBookCreate = (e) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const title = formData.get('title');
-        const author = formData.get('author');
-        const year = formData.get('year');
-        const description = formData.get('description');
-        const imageUrl = formData.get('imageUrl');
-        const recommendedUrl = formData.get('recommendedUrl');
-        const genre = formData.get('genre');
+        const { title, author, year, description, imageUrl, recommendedUrl, genre} = Object.fromEntries(new FormData(e.currentTarget));
+
+
 
         bookService.create({
             title,
@@ -78,10 +73,7 @@ const CreateBook = () => {
                         <label htmlFor="genre">Genre</label>
                         <span>
                             <select id="genre" name="genre">
-                                <option value="science-fiction">science fiction</option>
-                                <option value="historical-fiction">historical fiction</option>
-                                <option value="romance">romance</option>
-                                <option value="other">Other</option>
+                            {genres.map(g => <option key={g.value} value={g.value}>{g.text}</option>)}
                             </select>
                         </span>
                     </p>

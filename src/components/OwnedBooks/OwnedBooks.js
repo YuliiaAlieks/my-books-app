@@ -10,7 +10,7 @@ const OwnedBooks = () => {
     useEffect(() => {
         bookService.getOwned(user._id)
             .then(bookResult => {
-                console.log("🧚 ~ bookResult", bookResult)
+                // console.log("🧚 ~ bookResult", bookResult)
                 setBooks(bookResult);
             })
             .catch(err => {

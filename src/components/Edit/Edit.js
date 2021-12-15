@@ -3,15 +3,8 @@ import { useState } from 'react';
 
 import * as bookService from '../../services/bookService';
 import useBookState from '../../hooks/useBookState';
+import { genres } from '../../Common/genres';
 
-
-const genres = [
-    {value: 'science-fiction', text: 'science fiction'},
-    {value: 'historical-fiction', text: 'historical fiction'},
-    {value: 'romance', text: 'romance'},
-    {value: 'other', text: 'Other'},
-
-];
 
 const Edit = () => {
     const { bookId } = useParams();

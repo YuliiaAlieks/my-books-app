@@ -7,7 +7,7 @@ const useBookState = (bookId) => {
     useEffect(() => {
         bookService.getOne(bookId)
             .then(result => {
-                console.log("🧚 ~ details result", result)
+                // console.log("🧚 ~ details result", result)
                 setBook(result);
             });
 
