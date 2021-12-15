@@ -17,10 +17,11 @@ const Details = () => {
     const [book, setBook] = useBookState(bookId);
     const [showDelDialog, setShowDelDialog] = useState(false);
 
-    useEffect(() =>{
-        likeService.getCount(bookId)
-            .then(likeCount => {
-                setBook(state => ({...state, likes: likeCount}))
+    useEffect(() => {
+        likeService.getBookLikes(bookId)
+            .then(likes => {
+                console.log("🧚 ~ likes", likes);
+                setBook(state => ({ ...state, likes }));
             })
     }, []);
 
@@ -42,10 +43,22 @@ const Details = () => {
     }
 
     const likeBtnClick = () => {
+        if (user._id === book._ownerId) {
+            return;
+        }
+
+        if (book.likes.includes(user._id)) {
+            addNotification('You have already liked this book', notificationTypes.warn);
+            return;
+        }
+
         likeService.like(user._id, bookId)
             .then(() => {
-                setBook(state => ({...state, likes: state.likes + 1}));
+                setBook(state => ({ ...state, likes: [...state.likes, user._id] }));
                 addNotification('Successfully liked', notificationTypes.success);
+            })
+            .catch(err => {
+                console.log("🧚 ~ err", err);
             });
     }
 
@@ -56,7 +69,7 @@ const Details = () => {
         </>
     );
 
-    const guestButtons = (<button className="button" onClick={likeBtnClick}>Like</button>);
+    const guestButtons = (<button onClick={likeBtnClick} disabled={book.likes?.includes(user._id)}>Like</button>);
 
     return (
         <>
@@ -77,7 +90,7 @@ const Details = () => {
 
                         <div className="likes">
                             <img className="hearts" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/285/red-heart_2764-fe0f.png" alt="heart" />
-                            <span id="total-likes">Likes: {book.likes}</span>
+                            <span id="total-likes">Likes: {book.likes.length}</span>
                         </div>
 
                     </div>
