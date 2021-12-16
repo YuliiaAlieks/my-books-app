@@ -13,7 +13,6 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import Notification from './Common/Notification';
 import OwnedBooks from './components/OwnedBooks';
 import Register from './components/Register';
-import WishList from './components/WishList';
 import Logout from './components/Logout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,7 +29,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/my-wish-list" element={<WishList />} />
               <Route path="/my-books" element={<OwnedBooks />} />
               <Route path="/create" element={<CreateBook />} />
               <Route path="/edit/:bookId" element={<Edit />} />

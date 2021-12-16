@@ -1,0 +1,18 @@
+.form-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+	margin:auto
+}
+
+.form-wrapper > h2 {
+	margin: 2rem 0;
+}
+
+.form-wrapper .form-text  {
+	color: red;
+}
+
+.form-wrapper textarea#description  {
+	resize: vertical;
+}

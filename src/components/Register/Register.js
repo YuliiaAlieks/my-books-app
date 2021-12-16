@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
-// import { Form, Button } from 'react-bootstrap';
-import './Register.css'
+import '../../Common/FormStyle.css';
 import * as authService from '../../services/authService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useNotificationContext, notificationTypes } from '../../contexts/NotificationContext';
+
 
 
 const Register = () => {
@@ -47,7 +48,7 @@ const Register = () => {
         console.log("🧚 ~ email", email)
 
         if (password !== confirmation) {
-            setConfirmationErrors(state => ({ ...state, title: 'Password doesn`t match' }));
+            setConfirmationErrors(state => ({ ...state, title: 'Passwords don`t match' }));
             return;
         } else {
             setConfirmationErrors(state => ({ ...state, title: false }));
@@ -67,76 +68,37 @@ const Register = () => {
     }
 
     return (
-        // <section>
-        //     <h3>REGISTER</h3>
+        <div className='form-wrapper'>
+            <h2>Register</h2>
+            <Form onSubmit={registerHandler} method="POST">
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" name="email" placeholder="Enter email" onBlur={emailChangeHandler} />
+                    <Form.Text style={{ display: emailErrors.title ? 'inline' : 'hidden' }}>
+                        {emailErrors.title}
+                    </Form.Text>
+                </Form.Group>
 
-        //     <Form className='register-form'>
-        //         <Form.Group className="mb-3" controlId="formBasicEmail" onSubmit={registerHandler} method="POST">
-        //             <Form.Label>Email address</Form.Label>
-        //             <Form.Control type="email" placeholder="Enter email" onBlur={emailChangeHandler} />
-        //             <Form.Text className="text-muted" style={{ display: emailErrors.title ? 'inline' : 'hidden' }}>
-        //                 {emailErrors.title}
-        //             </Form.Text>
-        //         </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" name="password" placeholder="Password" onBlur={passwordChangeHandler} />
+                    <Form.Text style={{ display: passwordErrors.title ? 'inline' : 'hidden' }}>
+                        {passwordErrors.title}
+                    </Form.Text>
+                </Form.Group>
 
-        //         <Form.Group className="mb-3" controlId="formBasicPassword">
-        //             <Form.Label>Password</Form.Label>
-        //             <Form.Control type="password" placeholder="Password" onBlur={passwordChangeHandler} />
-        //             <Form.Text className="text-muted" style={{ display: passwordErrors.title ? 'inline' : 'hidden' }}>
-        //                 {passwordErrors.title}
-        //             </Form.Text>
-        //         </Form.Group>
-
-        //         <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-        //             <Form.Label>Confirm Password</Form.Label>
-        //             <Form.Control type="password" placeholder="Repeat password" />
-        //             <Form.Text className="text-muted" style={{ display: confirmationErrors.title ? 'inline' : 'hidden' }}>
-        //                 {confirmationErrors.title}
-        //             </Form.Text>
-        //         </Form.Group>
-
-        //         <Button variant="primary" type="submit" >
-        //             Register
-        //         </Button>
-        //     </Form>
-        // </section>
-
-        <section>
-            <form id="register-form" onSubmit={registerHandler} method="POST" >
-                <fieldset>
-                    <label>REGISTER</label>
-                    <p>
-                        <label htmlFor="email">Email</label>
-                        <span>
-                            <input type="text" name="email" id="email" placeholder="Email" onBlur={emailChangeHandler} />
-                        </span>
-                        <span style={{ display: emailErrors.title ? 'inline' : 'hidden' }}>
-                            {emailErrors.title}
-                        </span>
-                    </p>
-                    <p>
-                        <label htmlFor="password">Password</label>
-                        <span>
-                            <input type="password" name="password" id="password" placeholder="Password" onBlur={passwordChangeHandler} />
-                        </span>
-                        <span style={{ display: passwordErrors.title ? 'inline' : 'hidden' }}>
-                            {passwordErrors.title}
-                        </span>
-                    </p>
-                    <p>
-                        <label htmlFor="conf-pass">Confirm Password</label>
-                        <span>
-                            <input type="password" name="confirmation" id="conf-pass" placeholder="Repeat Password" />
-                        </span>
-                        <span style={{ display: confirmationErrors.title ? 'inline' : 'hidden' }}>
-                            {confirmationErrors.title}
-                        </span>
-                    </p>
-                    <input className="button" type="submit" value="Register" />
-                </fieldset>
-            </form>
-        </section>
-
+                <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
+                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control type="password" name="confirmation" placeholder="Repeat password" />
+                    <Form.Text style={{ display: confirmationErrors.title ? 'inline' : 'hidden' }}>
+                        {confirmationErrors.title}
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Register
+                </Button>
+            </Form>
+        </div>
     )
 }
 

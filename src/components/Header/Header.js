@@ -1,5 +1,4 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 const Header = () => {
@@ -16,7 +15,6 @@ const Header = () => {
         <div id="user" className='nav-right'>
             <span>Welcome, {user.email}</span>
             <Nav.Link href="/create">Add Book</Nav.Link>
-            <Nav.Link href="/my-wish-list">My Wish List</Nav.Link>
             <Nav.Link href="/my-books">My Books</Nav.Link>
             <Nav.Link href="/logout">Logout</Nav.Link>
         </div>

@@ -1,4 +1,7 @@
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+
+import '../../Common/FormStyle.css';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { notificationTypes, useNotificationContext } from '../../contexts/NotificationContext';
 import * as authService from '../../services/authService';
@@ -18,7 +21,7 @@ const Login = () => {
         authService.login(email, password)
             .then(authData => {
                 console.log('logged');
-                
+
                 login(authData);
                 addNotification('You logged in successfully', notificationTypes.success);
                 navigate('/dashboard');
@@ -30,28 +33,22 @@ const Login = () => {
     }
 
     return (
-        <section>
-            <form id="login-form" onSubmit={onLoginHandler} method="POST">
-                <fieldset>
-                    <label>LOGIN</label>
-                    <p>
-                        <label htmlFor="email">Email</label>
-                        <span>
-                            <input type="text" name="email" id="email" placeholder="Email" />
-                        </span>
-                    </p>
-                    <p>
-                        <label htmlFor="password">Password</label>
-                        <span>
-                            <input type="password" name="password" id="password" placeholder="Password" />
-                        </span>
-                    </p>
-                    <input className="button" type="submit" value="Login" />
+        <Form className='form-wrapper' onSubmit={onLoginHandler} method="POST">
+            <h2>Login</h2>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" name="email" placeholder="Enter email" />
+            </Form.Group>
 
-                </fieldset>
-            </form>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" name="password" placeholder="Password" />
+            </Form.Group>
 
-        </section>
+            <Button variant="primary" type="submit">
+                Login
+            </Button>
+        </Form>
     );
 }
 
