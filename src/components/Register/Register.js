@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+// import { Form, Button } from 'react-bootstrap';
+import './Register.css'
 import * as authService from '../../services/authService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useNotificationContext, notificationTypes } from '../../contexts/NotificationContext';
@@ -40,7 +42,10 @@ const Register = () => {
     const registerHandler = (e) => {
         e.preventDefault();
         const { email, password, confirmation } = Object.fromEntries(new FormData(e.currentTarget));
-   
+        console.log("🧚 ~ confirmation", confirmation)
+        console.log("🧚 ~ password", password)
+        console.log("🧚 ~ email", email)
+
         if (password !== confirmation) {
             setConfirmationErrors(state => ({ ...state, title: 'Password doesn`t match' }));
             return;
@@ -62,6 +67,40 @@ const Register = () => {
     }
 
     return (
+        // <section>
+        //     <h3>REGISTER</h3>
+
+        //     <Form className='register-form'>
+        //         <Form.Group className="mb-3" controlId="formBasicEmail" onSubmit={registerHandler} method="POST">
+        //             <Form.Label>Email address</Form.Label>
+        //             <Form.Control type="email" placeholder="Enter email" onBlur={emailChangeHandler} />
+        //             <Form.Text className="text-muted" style={{ display: emailErrors.title ? 'inline' : 'hidden' }}>
+        //                 {emailErrors.title}
+        //             </Form.Text>
+        //         </Form.Group>
+
+        //         <Form.Group className="mb-3" controlId="formBasicPassword">
+        //             <Form.Label>Password</Form.Label>
+        //             <Form.Control type="password" placeholder="Password" onBlur={passwordChangeHandler} />
+        //             <Form.Text className="text-muted" style={{ display: passwordErrors.title ? 'inline' : 'hidden' }}>
+        //                 {passwordErrors.title}
+        //             </Form.Text>
+        //         </Form.Group>
+
+        //         <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
+        //             <Form.Label>Confirm Password</Form.Label>
+        //             <Form.Control type="password" placeholder="Repeat password" />
+        //             <Form.Text className="text-muted" style={{ display: confirmationErrors.title ? 'inline' : 'hidden' }}>
+        //                 {confirmationErrors.title}
+        //             </Form.Text>
+        //         </Form.Group>
+
+        //         <Button variant="primary" type="submit" >
+        //             Register
+        //         </Button>
+        //     </Form>
+        // </section>
+
         <section>
             <form id="register-form" onSubmit={registerHandler} method="POST" >
                 <fieldset>

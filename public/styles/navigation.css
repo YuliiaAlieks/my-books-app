@@ -93,3 +93,10 @@ nav.navbar ul li:hover > a {
 .navbar-anonymous ul{
     display: flex;
 }
+
+
+.nav-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

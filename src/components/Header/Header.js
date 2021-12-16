@@ -1,3 +1,4 @@
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
@@ -5,35 +6,36 @@ const Header = () => {
     const { user } = useAuthContext();
 
     const guestNavigation = (
-        <div id="guest">
-            <Link className="button" to="login" >Login</Link>
-            <Link className="button" to="register" >Register</Link>
+        <div id="guest" className='nav-right'>
+            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/register">Register</Nav.Link>
         </div>
     );
 
     const userNavigation = (
-        <div id="user">
+        <div id="user" className='nav-right'>
             <span>Welcome, {user.email}</span>
-            <Link className="button" to="create" >Add Book</Link>
-            <Link className="button" to="my-wish-list" >My Wish List</Link>
-            <Link className="button" to="my-books" >My Books</Link>
-            <Link className="button" to="logout">Logout</Link>
+            <Nav.Link href="/create">Add Book</Nav.Link>
+            <Nav.Link href="/my-wish-list">My Wish List</Nav.Link>
+            <Nav.Link href="/my-books">My Books</Nav.Link>
+            <Nav.Link href="/logout">Logout</Nav.Link>
         </div>
     );
 
     return (
         <header id="site-header">
-            <nav className="navbar">
-                <section className="navbar-dashboard">
-                    <Link to="/dashboard" >Dashboard</Link>
-                    {
-                        user.email
-                            ? userNavigation
-                            : guestNavigation
-
-                    }
-                </section>
-            </nav>
+            <Navbar bg='dark' variant='dark'>
+                <Container >
+                    <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
+                    <Nav>
+                        {
+                            user.email
+                                ? userNavigation
+                                : guestNavigation
+                        }
+                    </Nav>
+                </Container>
+            </Navbar>
         </header>
     );
 }

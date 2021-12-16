@@ -1,0 +1,21 @@
+.details {
+    background-color: crimson;
+    display: flex;
+    padding: 5rem;
+    justify-content: space-around;
+}
+
+.details-right {
+    width: auto;
+    flex-shrink: 1;
+    padding: 0 70px;
+}
+
+.details-img {
+    display: block;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-height: 500px;
+    object-fit: cover;
+}

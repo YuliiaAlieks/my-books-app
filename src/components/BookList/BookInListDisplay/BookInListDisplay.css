@@ -1,0 +1,26 @@
+.books-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.book-img {
+    margin-bottom: 1.5rem;
+    width: 15rem;
+    position: relative;
+    overflow: hidden;
+    padding: 0rem;
+    height: 300px;
+}
+
+.book-li {
+    align-items: inherit;
+    width: 24%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-shadow: -8px -2px 28px -8px #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

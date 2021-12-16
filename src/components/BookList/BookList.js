@@ -1,12 +1,12 @@
 import BookInListDisplay from "./BookInListDisplay";
 
-const BookList = ({books}) => {
+const BookList = ({ books }) => {
 
     return (
         <>
             {books.length > 0
                 ? (
-                    <ul className="other-books-list">
+                    <ul className="books-list">
                         {books.map(b => <BookInListDisplay key={b._id} book={b} />)}
 
                     </ul>
