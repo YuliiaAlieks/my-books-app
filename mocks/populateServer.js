@@ -1,6 +1,6 @@
 
 
-// const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 const mockData = [
     {
@@ -45,22 +45,23 @@ const mockData = [
     }
 ]
 
-// const baseUrl = 'http://localhost:3030/data';
+const baseUrl = 'http://localhost:3030/data';
 
-// const postBook = async (bookData) => {
+const postBook = async (bookData) => {
 
-//     const response = await fetch(`${baseUrl}/books`, {
-//         method: 'POST',
-//         headers: {
-//             'content-type': 'application/json',
-//         },
-//         body: JSON.stringify(bookData)
-//     });
+    const response = await fetch(`${baseUrl}/books`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-Authorization': "f0872a88dee73120bf60435b931c49432a4fc29be067b5ec3819eb528a4998c6"
+        },
+        body: JSON.stringify(bookData)
+    });
 
-//     const result = await response.json();
-//     return result;
-// }
+    const result = await response.json();
+    return result;
+}
 
-// mockData.forEach(data => {
-//     postBook(data);
-// });
+mockData.forEach(data => {
+    postBook(data);
+});

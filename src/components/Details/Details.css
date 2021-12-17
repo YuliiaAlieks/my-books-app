@@ -1,5 +1,5 @@
 .details {
-    background-color: crimson;
+    background-color: rgb(220, 195, 235);
     display: flex;
     padding: 5rem;
     justify-content: space-around;

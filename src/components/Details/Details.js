@@ -21,7 +21,7 @@ const Details = () => {
     useEffect(() => {
         likeService.getBookLikes(bookId)
             .then(likes => {
-                // console.log("🧚 ~ likes", likes);
+            console.log("🧚 ~ likes", likes)
                 setBook(state => ({ ...state, likes }));
             })
             .catch(err => {

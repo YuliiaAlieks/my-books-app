@@ -1,18 +1,19 @@
+import { delay } from "../Common/utils";
 
 export const request = (method, url, data) => {
     let result = null;
 
     if (method === 'GET') {
-        result = fetch(url);
+        result = delay().then(() => fetch(url));
     } else {
-        result = fetch(url,{
+        result = delay().then(() => fetch(url, {
             method,
             headers: {
                 'content-type': 'application/json',
                 'X-Authorization': getToken()
             },
             body: JSON.stringify(data)
-        });
+        }));
     }
     return result.then(responseHandler);
 }
@@ -20,7 +21,7 @@ export const request = (method, url, data) => {
 async function responseHandler(res) {
     let jsonData = await res.json();
 
-    if(res.ok){
+    if (res.ok) {
         return Object.values(jsonData);
     } else {
         throw jsonData;

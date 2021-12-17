@@ -5,26 +5,22 @@ const baseUrl = 'http://localhost:3030/data';
 export const getAll = () => request.get(`${baseUrl}/books`);
 
 export const getOwned = (ownerId) => {
-    // console.log("🧚 ~ ownerId", ownerId)
     let query = encodeURIComponent(`_ownerId="${ownerId}"`);
-    // console.log("🧚 ~ query", query)
     return request.get(`${baseUrl}/books?where=${query}`);
 }
 
 export const getOne = (bookId) => {
     return fetch(`${baseUrl}/books/${bookId}`)
         .then(res => {
-            // console.log("🧚 ~ getOneFetchRes", res)
-
+            console.log("🧚 ~ res", res)
             if (res.ok) {
+
                 return res.json();
             } else {
                 throw res.statusText;
             }
         });
-
 }
-
 
 
 export const create = async (bookData, token) => {

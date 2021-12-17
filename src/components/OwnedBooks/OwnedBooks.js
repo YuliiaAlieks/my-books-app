@@ -5,6 +5,7 @@ import BookList from "../BookList/BookList";
 
 const OwnedBooks = () => {
     const [books, setBooks] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { user } = useAuthContext();
 
     useEffect(() => {
@@ -12,11 +13,17 @@ const OwnedBooks = () => {
             .then(bookResult => {
                 // console.log("🧚 ~ bookResult", bookResult)
                 setBooks(bookResult);
+                setIsLoading(false);
             })
             .catch(err => {
                 console.log("🧚 ~ err", err);
+                setIsLoading(false);
             });
     }, [user._id]);
+
+    if (isLoading) {
+        return <p className="message">Loading...</p>;
+    }
 
     return (
         <section id="dashboard-page" className="dashboard">
