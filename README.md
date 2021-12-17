@@ -8,15 +8,17 @@ A CRA React application - My Books Store
 
 #### `npm start`
 
-#### Start SoftUni Practice Server as a back-end server
+### Prepare back-end server:
 
-#### Click on Register and create a user by filling the form
+* #### Start SoftUni Practice Server as a back-end server
 
-#### Go to Local Storage and copy the value of `accessToken`
+* #### Click on Register and create a user by filling the form
 
-#### Open mocks/populate.js and update the value of `accessToken` 
+* #### Go to Local Storage and copy the value of `accessToken`
 
-#### `npm run populate`
+* #### Open mocks/populate.js and update the value of `accessToken` 
+
+* #### `npm run populate`
 
 #### Now the server should be seeded with mock data
 
