@@ -33,7 +33,7 @@ img {
 .dashboard h1 {
     text-align: center;
     margin: 0rem;
-    padding: 2rem 0 1rem 0;
+    padding: 0rem 0 1rem 0;
 }
 
 h3 {
@@ -88,7 +88,7 @@ textarea#description {
 
 .message {
     text-align: center;
-    margin: 50px;
+    margin: 25px;
     font-size: 20px;
     color: #9999ff
 }

@@ -29,7 +29,7 @@ const Dashboard = () => {
 
     return (
         <section id="dashboard-page" className="dashboard">
-            {isLogged() ? <h1>All books</h1> : <WelcomeMessage />}
+            {isLogged() ? <div className="message"><h1>All Books</h1></div> : <WelcomeMessage />}
             <BookList books={books} />
         </section>
     )
