@@ -14,9 +14,6 @@ const Logout = () => {
         })
     }, [logout, navigate, user.accessToken]);
 
-  
-
-// what to show to the users if request will be delayed?
     return null;
 }
 

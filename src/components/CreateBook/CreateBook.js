@@ -109,7 +109,7 @@ const CreateBook = () => {
 
     return (
         <Form className='form-wrapper' onSubmit={onBookCreate} method="POST">
-            <h2>Create new Book</h2>
+            <h2>Add New Book</h2>
             <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" name="title" placeholder="Title" onBlur={titleChangeHandler}/>
@@ -164,7 +164,7 @@ const CreateBook = () => {
             </Form.Group>
 
             <Button variant="primary" type="submit">
-                Create Book
+                Add Book
             </Button>
         </Form>
     );

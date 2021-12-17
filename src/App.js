@@ -27,16 +27,13 @@ function App() {
           <Notification />
           <main id="site-content">
             <Routes>
-              <Route
-                path="/"
-                element={<Navigate to="/dashboard" />}
-              />
+              <Route path="/" element={<Navigate to="/dashboard" />}/>
               <Route path="/dashboard/*" element={<Dashboard />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
               <Route path="/my-books" element={<OwnedBooks />} />
-              <Route path="/create" element={<CreateBook />} />
+              <Route path="/add" element={<CreateBook />} />
               <Route path="/edit/:bookId" element={<Edit />} />
               <Route path="/details/:bookId" element={<Details />} />
               <Route path="*" element={<PageNotFound />} />

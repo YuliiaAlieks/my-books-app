@@ -14,7 +14,7 @@ const Header = () => {
     const userNavigation = (
         <div id="user" className='nav-right'>
             <span>Welcome, {user.email}</span>
-            <Nav.Link href="/create">Add Book</Nav.Link>
+            <Nav.Link href="/add">Add Book</Nav.Link>
             <Nav.Link href="/my-books">My Books</Nav.Link>
             <Nav.Link href="/logout">Logout</Nav.Link>
         </div>
