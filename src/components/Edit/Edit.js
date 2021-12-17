@@ -13,13 +13,15 @@ import { useNotificationContext, notificationTypes } from '../../contexts/Notifi
 const Edit = () => {
     const navigate = useNavigate();
     const { bookId } = useParams();
+    const [book, setBook] = useBookState(bookId);
+    const { addNotification } = useNotificationContext();
+    
     const [titleErrors, setTitleErrors] = useState({title: false});
     const [authorErrors, setAuthorErrors] = useState({title: false});
     const [yearErrors, setYearErrors] = useState({title: false});
     const [descriptionErrors, setDescriptionErrors] = useState({title: false});
     const [imageUrlErrors, setImageUrlErrors] = useState({title: false});
-    const [book, setBook] = useBookState(bookId);
-    const { addNotification } = useNotificationContext();
+
 
     const bookEditsubmitHandler = (e) => {
         e.preventDefault();

@@ -15,6 +15,7 @@ import OwnedBooks from './components/OwnedBooks';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import StartPage from './components/StartPage/StartPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Notification />
           <main id="site-content">
             <Routes>
+              <Route path="/" element={<StartPage />} />
               <Route path="/dashboard/*" element={<Dashboard />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
@@ -36,6 +38,7 @@ function App() {
             </Routes>
 
           </main>
+          <footer><p>@MyBooksApp</p></footer>
         </div>
       </NotificationProvider>
     </AuthProvider>

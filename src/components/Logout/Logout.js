@@ -10,7 +10,7 @@ const Logout = () => {
         authService.logout(user.accessToken)
         .then(() => {
             logout();
-            navigate('/dashboard');
+            navigate('/');
         })
     }, [logout, navigate, user.accessToken]);
 

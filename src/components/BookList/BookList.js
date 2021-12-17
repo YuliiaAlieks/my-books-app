@@ -11,7 +11,7 @@ const BookList = ({ books }) => {
 
                     </ul>
                 )
-                : <p>No books are stored</p>
+                : <p className="message">Opps! No books are found :(</p>
             }
         </>
     );

@@ -7,5 +7,6 @@ export const like = (userId, bookId) => request.post(`${baseUrl}/likes`, {userId
 export const getBookLikes = (bookId) => {
     const query = encodeURIComponent(`bookId="${bookId}"`);
     return request.get(`${baseUrl}/likes?select=userId&where=${query}`)
-        .then(res => res.map(x => x.userId));
+        .then(res => res.map(x => x.userId))
+        .catch(err => console.log(err));
 }
