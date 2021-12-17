@@ -16,6 +16,7 @@ import Register from './components/Register';
 import Logout from './components/Logout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StartPage from './components/StartPage/StartPage';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path="/create" element={<CreateBook />} />
               <Route path="/edit/:bookId" element={<Edit />} />
               <Route path="/details/:bookId" element={<Details />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
 
           </main>

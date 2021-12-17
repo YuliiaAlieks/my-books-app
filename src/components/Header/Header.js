@@ -24,7 +24,7 @@ const Header = () => {
         <header id="site-header">
             <Navbar bg='dark' variant='dark'>
                 <Container >
-                    <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
+                    <Navbar.Brand href="/dashboard" className={!user.email ?'disabled-link' : null}>Dashboard</Navbar.Brand>
                     <Nav>
                         {
                             user.email
