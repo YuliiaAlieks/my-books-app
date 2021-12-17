@@ -15,7 +15,6 @@ import OwnedBooks from './components/OwnedBooks';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import WelcomeMessage from './components/WelcomeMessage/WelcomeMessage';
 import PageNotFound from './components/PageNotFound';
 
 function App() {
