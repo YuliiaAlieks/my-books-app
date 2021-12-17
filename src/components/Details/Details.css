@@ -19,3 +19,7 @@
     max-height: 500px;
     object-fit: cover;
 }
+
+p.oblique {
+    font-style: oblique;
+  }

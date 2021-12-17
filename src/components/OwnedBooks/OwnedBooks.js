@@ -28,7 +28,9 @@ const OwnedBooks = () => {
 
     return (
         <section id="dashboard-page" className="dashboard">
-            <h1>My Books</h1>
+            <div className="message">
+                <h1>My Books</h1>
+            </div>
             <section>
                 <BookList books={books} />
             </section>
