@@ -13,7 +13,6 @@ const Dashboard = () => {
     useEffect(() => {
         bookService.getAll(!isLogged())
             .then(result => {
-                console.log("🧚 ~ result", result)
                 setBooks(result);
                 setIsLoading(false);
             })
@@ -21,7 +20,7 @@ const Dashboard = () => {
                 console.log("🧚 ~ err", err);
                 setIsLoading(false);
             });
-    }, []);
+    }, [isLogged]);
 
     if (isLoading) {
         return <Loader />;
