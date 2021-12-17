@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
 import CreateBook from './components/CreateBook';
@@ -15,7 +15,7 @@ import OwnedBooks from './components/OwnedBooks';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import StartPage from './components/StartPage/StartPage';
+import WelcomeMessage from './components/WelcomeMessage/WelcomeMessage';
 import PageNotFound from './components/PageNotFound';
 
 function App() {
@@ -27,7 +27,10 @@ function App() {
           <Notification />
           <main id="site-content">
             <Routes>
-              <Route path="/" element={<StartPage />} />
+              <Route
+                path="/"
+                element={<Navigate to="/dashboard" />}
+              />
               <Route path="/dashboard/*" element={<Dashboard />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />

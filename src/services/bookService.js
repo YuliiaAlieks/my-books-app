@@ -2,9 +2,8 @@ import * as request from './requester';
 
 const baseUrl = 'http://localhost:3030/data';
 
-export const getAll = () => request.get(`${baseUrl}/books`);
-export const getTopThree = () => request.get(`${baseUrl}/books`)
-    .then(books => books.slice(0,3));
+export const getAll = (filter) => request.get(`${baseUrl}/books`)
+    .then(books => filter ? books.slice(0,3) : books);
 
 export const getOwned = (ownerId) => {
     let query = encodeURIComponent(`_ownerId="${ownerId}"`);
