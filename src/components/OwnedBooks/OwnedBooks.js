@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Loader } from "../../Common/Loader/Loader";
 import { useAuthContext } from "../../contexts/AuthContext";
 import * as bookService from "../../services/bookService";
 import BookList from "../BookList/BookList";
@@ -22,7 +23,7 @@ const OwnedBooks = () => {
     }, [user._id]);
 
     if (isLoading) {
-        return <p className="message">Loading...</p>;
+        return <Loader />;
     }
 
     return (

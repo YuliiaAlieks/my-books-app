@@ -9,7 +9,7 @@ const Dashboard = () => {
 
     useEffect(() => {
 
-        bookService.getAll()
+        bookService.getTopThree()
             .then(result => {
                 // console.log("🧚 ~ result", result)
                 setBooks(result);

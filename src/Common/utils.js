@@ -7,6 +7,6 @@ function getRandomInt(min, max) {
 
 export function delay() {
     const ms = getRandomInt(500, 1500);
-    return new Promise(resolve => setTimeout(() => resolve(), 1000000));
+    return new Promise(resolve => setTimeout(() => resolve(), ms));
 
 }
