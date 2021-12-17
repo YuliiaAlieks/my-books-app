@@ -1,6 +1,6 @@
-A CRA React application - My Books Store
+# CRA React application - My Books Store
 
-# How to get the projecct running
+## How to get the project running
 
 #### Download the project
 
